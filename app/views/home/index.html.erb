@@ -1,0 +1,11 @@
+<div>
+    <span class="text-2xl">
+        Welcome back: <%= @user.email%>
+    </span>
+</div>
+
+<div>
+    <% unless @company.present?%>
+        <span>You are not invited to any company, email your company admin to get invited</span>
+    <% end %>
+</div>
