@@ -8,4 +8,6 @@
     <% unless @company.present?%>
         <span>You are not invited to any company, email your company admin to get invited</span>
     <% end %>
+
+    <%= link_to "See company overview", company_url(@company.id) %>
 </div>

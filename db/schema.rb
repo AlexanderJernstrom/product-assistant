@@ -10,15 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_28_102313) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_02_192734) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "vector"
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
     t.string "org_no"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "invites", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.bigint "company_id"
+    t.index ["company_id"], name: "index_invites_on_company_id"
+    t.index ["user_id"], name: "index_invites_on_user_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.float "price"
+    t.string "brand"
+    t.string "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.vector "embedding", limit: 1536
+    t.bigint "company_id"
+    t.index ["company_id"], name: "index_products_on_company_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -35,4 +58,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_28_102313) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "invites", "companies"
+  add_foreign_key "invites", "users"
+  add_foreign_key "products", "companies"
 end

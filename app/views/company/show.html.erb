@@ -1,0 +1,27 @@
+
+<h1>
+  <%= @company.name %>
+  <%= @company.org_no %>
+</h1>
+
+<table class="border-collapse border border-slate-500">
+  <tr>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Brand</th>
+    <th>Description</th>
+  </tr>
+  <tbody>
+  <% @company.products.each do |product| %>
+    <tr>
+      <td class="border border-slate-700"><%= product.name %></td>
+      <td class="border border-slate-700"><%= product.price %></td>
+      <td class="border border-slate-700"><%= product.brand %></td>
+      <td class="border border-slate-700"><%= product.description %></td>
+    </tr>
+  <% end %>
+  </tbody>
+  
+</table>
+
+<%= link_to "Create product", new_company_product_url(@company.id) %>
