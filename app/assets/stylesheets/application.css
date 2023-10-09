@@ -13,3 +13,21 @@
  *= require_tree .
  *= require_self
  */
+ .chat-bubble {
+  background-color: #0084FF;
+  color: white;
+  border-radius: 20px;
+  padding: 10px 15px;
+  max-width: 300px;
+  position: relative;
+}
+
+.chat-bubble::before {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 20px;
+  border-style: solid;
+  border-width: 10px 10px 0 0;
+  border-color: #F5F5F5 transparent transparent transparent;
+}

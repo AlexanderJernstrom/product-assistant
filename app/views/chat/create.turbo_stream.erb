@@ -1,0 +1,3 @@
+<%= turbo_stream.append "message", partial: "message", locals: {message: @query, role: "user"} %>
+<%= turbo_stream.append "message", partial: "message", locals: {message: @message["content"], role: "bot"} %>
+<%= turbo_stream.replace "send_form", partial: "chat/chat", locals: {company_id: @company_id, chat_id: @chat_id}%>

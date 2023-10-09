@@ -36,7 +36,11 @@ gem "devise"
 
 gem 'faker'
 
+gem "redcarpet"
 
+gem "ruby-openai"
+
+gem 'csv'
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
@@ -81,4 +85,11 @@ group :test do
   gem "webdrivers"
 end
 
+gem "stimulus_reflex", "= 3.5.0.pre8"
+
 gem "tailwindcss-rails", "~> 2.0"
+
+gem "langchainrb"
+gem "weaviate-ruby", "~> 0.8.0"
+
+gem "sidekiq", "~> 7.1"

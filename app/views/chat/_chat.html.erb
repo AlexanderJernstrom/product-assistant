@@ -1,0 +1,7 @@
+
+<div style="width: 100%; display: flex; justify-content: center;">
+  <%= form_with(url: company_chat_index_url({:company_id => company_id, :chat_id => chat_id}), id: "send_form", method: :post) do |f| %>
+    <%= f.text_field :query, style: "width: 40rem"%>
+    <%= f.submit "Send", class: "btn-primary", data: {action: "click->company#sendMessage", target: "company.messageInput"} %>
+  <% end %>
+</div>

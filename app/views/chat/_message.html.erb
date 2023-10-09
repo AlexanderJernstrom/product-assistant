@@ -1,0 +1,28 @@
+<style>
+.chat-bubble-bot {
+  background-color: #0084FF;
+  color: white;
+  border-radius: 20px;
+  padding: 10px 15px;
+  max-width: 500px;
+  position: relative;
+  margin-top: 10px;
+}
+
+.chat-bubble-user {
+  margin-top: 10px;
+  background-color: #E4E6EB;
+  color: black;
+  border-radius: 20px;
+  padding: 10px 15px;
+  max-width: 500px;
+  position: relative;
+}
+
+
+</style>
+<div class="chat-bubble-<%= role %>">
+  <span>
+    <%= markdown(message) %>
+  </span>
+</div>

@@ -12,16 +12,20 @@
     <th>Description</th>
   </tr>
   <tbody>
-  <% @company.products.each do |product| %>
+  <% @products.each do |product| %>
     <tr>
-      <td class="border border-slate-700"><%= product.name %></td>
-      <td class="border border-slate-700"><%= product.price %></td>
-      <td class="border border-slate-700"><%= product.brand %></td>
-      <td class="border border-slate-700"><%= product.description %></td>
+      <td class="border border-sky-800"><%= product.name %></td>
+      <td class="border border-sky-800"><%= product.price %></td>
+      <td class="border border-sky-800"><%= product.brand %></td>
+      <td class="border border-sky-800"><%= product.description %></td>
     </tr>
   <% end %>
   </tbody>
-  
+
 </table>
 
+
+
 <%= link_to "Create product", new_company_product_url(@company.id) %>
+
+<%= render partial: "chat/chat_window", locals: {company_id: @company.id, chat_id: @chat.id}%>
