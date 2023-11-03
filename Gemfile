@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "2.7.0"
+ruby "3.0.0"
 
 gem 'dotenv-rails', groups: [:development, :test]
 
@@ -39,10 +39,10 @@ gem 'faker'
 gem "redcarpet"
 
 gem "ruby-openai"
-
+gem 'jsbundling-rails'
 gem 'csv'
 # Use Redis adapter to run Action Cable in production
-# gem "redis", "~> 4.0"
+gem "redis", "~> 4.0"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -85,7 +85,6 @@ group :test do
   gem "webdrivers"
 end
 
-gem "stimulus_reflex", "= 3.5.0.pre8"
 
 gem "tailwindcss-rails", "~> 2.0"
 
@@ -93,3 +92,5 @@ gem "langchainrb"
 gem "weaviate-ruby", "~> 0.8.0"
 
 gem "sidekiq", "~> 7.1"
+
+gem "activejob-status", "~> 1.0"

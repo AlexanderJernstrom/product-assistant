@@ -1,31 +1,34 @@
+<div class="min-h-screen flex gap-2">
 
-<h1>
-  <%= @company.name %>
-  <%= @company.org_no %>
-</h1>
+  <%= render "layouts/sidebar", company_id: @company.id %>
+  <div>
+    <h1>
+      <%= @company.name %>
+      <%= @company.org_no %>
+    </h1>
+  <div class="h-80 overflow-y-scroll">
+    <table class="border-collapse border border-slate-500">
+      <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Brand</th>
+        <th>Description</th>
+      </tr>
+      <tbody>
+      <% @products.each do |product| %>
+        <tr>
+          <td class="border border-sky-800"><%= product.name %></td>
+          <td class="border border-sky-800"><%= product.price %></td>
+          <td class="border border-sky-800"><%= product.brand %></td>
+          <td class="border border-sky-800"><%= product.description %></td>
+        </tr>
+      <% end %>
+      </tbody>
 
-<table class="border-collapse border border-slate-500">
-  <tr>
-    <th>Name</th>
-    <th>Price</th>
-    <th>Brand</th>
-    <th>Description</th>
-  </tr>
-  <tbody>
-  <% @products.each do |product| %>
-    <tr>
-      <td class="border border-sky-800"><%= product.name %></td>
-      <td class="border border-sky-800"><%= product.price %></td>
-      <td class="border border-sky-800"><%= product.brand %></td>
-      <td class="border border-sky-800"><%= product.description %></td>
-    </tr>
-  <% end %>
-  </tbody>
+    </table>
+  </div>
+    <%= link_to "Create product", new_company_product_url(@company.id) %>
 
-</table>
-
-
-
-<%= link_to "Create product", new_company_product_url(@company.id) %>
-
-<%= render partial: "chat/chat_window", locals: {company_id: @company.id, chat_id: @chat.id}%>
+    <%= render partial: "chat/chat_window", locals: {company_id: @company.id, chat_id: @chat.id}%>
+  </div>
+</div>

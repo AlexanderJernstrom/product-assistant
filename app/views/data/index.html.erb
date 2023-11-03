@@ -1,0 +1,32 @@
+<div class="min-h-screen flex gap-2">
+
+  <%= render "layouts/sidebar", company_id: @company_id%>
+  <div class="w-full"> 
+   <div class="pt-8">
+    <h1 class="text-2xl">Product data</h1> 
+   </div>
+   <div class="w-[95%] h-1 bg-black"></div>
+   <div>
+    <h1 class="text-xl"> Previous attempts </h1>
+    <%= @product_uploads.each do |upload| %>
+      <div>
+        <p>
+          <%= upload.created_at %>
+        </p>
+        <p>
+          <%= upload.status %>
+        </p>
+     <div> 
+    <% end %>
+   </div>
+   <div class="flex justify-center w-full">
+    <div class="w-[95%%] h-20 mt-2 ">
+      <%= form_with(url: "/company/#{@company_id}/data", method: :post) do |form| %>
+        <%= form.file_field :file, class: "text-black", accept: "text/csv" %>
+        <%= form.hidden_field :company_id, value: @company_id %>
+        <%= form.submit "Upload", class: "cursor-pointer bg-blue-600 p-2 text-white rounded-md active:bg-blue-700" %>
+      <% end %>
+   </div>
+  </div>
+  <div id="upload-container"> </div>
+</div>

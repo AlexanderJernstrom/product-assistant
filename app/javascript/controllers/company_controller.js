@@ -1,22 +1,11 @@
-import ApplicationController from './application_controller'
+import { Controller } from "@hotwired/stimulus";
 
-/* This is the custom StimulusReflex controller for the Company Reflex.
- * Learn more at: https://docs.stimulusreflex.com
- */
-export default class extends ApplicationController {
-  static targets = ["messageInput"]
-  
-  connect () {
-    super.connect()
-    console.log("hello world")
-    // add your code here, if applicable
+// Connects to data-controller="company"
+export default class extends Controller {
+  static targets = ["form"];
+  connect() {
+    console.log("hello");
   }
 
-
-  sendMessage(event) {
-    console.log(event)
-    this.messageInputTarget.value = "hello theer"
-  }
-
- 
+  handleSubmit(event) {}
 }

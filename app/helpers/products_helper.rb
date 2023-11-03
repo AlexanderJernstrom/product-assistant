@@ -19,7 +19,9 @@ module ProductsHelper
     response["data"].map { |v| v["embedding"] }
   end
 
-  def fetch_embeddings_query(query)
+  def fetch_embeddings_query(query, conversation=[])
+
+    OpenAIClient.new.should_fetch_embeddings?(query, conversation)
     data = {
       input: query,
       model: "text-embedding-ada-002"
@@ -61,5 +63,9 @@ module ProductsHelper
 
   def format_product_context(product)
     "Name: #{product[:name]}\n Description: #{product[:description]}\n Price: #{product[:price]}\n Brand: #{product[:brand]}\n Category: #{product[:category]}"
+  end
+
+  def simple_product_context(product)
+    "Name: #{product[:name]}\n Description: #{product[:description]}\n"
   end
 end

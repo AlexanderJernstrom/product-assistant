@@ -1,9 +1,9 @@
 
-<div class="border" style=" display: flex; flex-direction: column; align-items: flex-end; width: 70%; margin-left: 15%;" data-controller="company">
+<div class="border flex flex-col items-end w-2/3 ml-[15%]"  >
   <%= turbo_stream_from "message" %>
 
-  <div id="message" style="overflow-y: scroll; width: 100%; height: 400px">
+  <div id="message" class="overflow-y-scroll w-full h-[800px]" >
+    <%= render partial: "chat/message", locals: {role: "bot", message: "👋Välkommen till ongoal! Jag är en produkt assistent som kan svara på dina frågor gällande våra padelrack"} %>
   </div>
   <%= render partial: "chat/chat", locals: {company_id: company_id, chat_id: chat_id} %>
-
 </div>

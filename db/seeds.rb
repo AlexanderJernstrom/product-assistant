@@ -9,11 +9,15 @@
 # Create multiple products for Company with id 1
 require "net/http"
 require "csv"
+require "json"
 
 
 def fetch_embeddings_many(products)
   input = products.map do |product|
-    "Name: #{product[:name]}\n Price: #{product[:price]}\n Rating: #{product[:description]}\n Category: #{product[:category]}" 
+    table_string = product[:attributes_table].map do |key, value|
+      "#{key}: #{value}"
+    end.join("\n")
+    "Namn: #{product[:product_name]}\n Beskrivning: #{product[:product_description]}\n Information: #{table_string} "
   end
 
   url = "https://api.openai.com/v1/embeddings"
@@ -32,26 +36,32 @@ end
 
 def create_data
   company = Company.find(1)
-  
-  file = File.read("./db/data/products.csv")
-  products = CSV.parse(file, headers: true).map(&:to_h).reject { |hash| hash.values.include?(nil) }
 
-  products = products.take(100)
+  file = File.read("./db/data/data.json")
+  products = JSON.parse(file)
 
   products = products.map do |product|
-    pp products.index product
     {
-      name: product["name"],
-      price: product["actual_price"].gsub(/[^\d]/, '').to_i,
-      description: product["rating"],
-      category: product["main_category"],
-      brand: product["sub_category"],
-      company_id: company.id
+      name: product["product_name"],
+      description: product["product_description"],
+      price: 10,
+      category: "Padel",
+      brand: "Babolat",
+      company_id: company.id,
+      attributes_table: product["attributes_table"]
     }
   end
   embeddings = fetch_embeddings_many(products)
+  products = products.map do |product|
+    # remove attributes_table from product
+    product.delete(:attributes_table)
+    product
+  end
+
+
 
   products.each_with_index do |product, index|
+    pp product
     Product.create(product.merge(embedding: embeddings[index]))
   end
 end

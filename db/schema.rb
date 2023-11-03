@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_24_211929) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_28_202747) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "vector"
@@ -38,19 +38,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_24_211929) do
     t.index ["user_id"], name: "index_invites_on_user_id"
   end
 
-  create_table "langchain_pg_collection", primary_key: "uuid", id: :uuid, default: nil, force: :cascade do |t|
-    t.string "name"
-    t.json "cmetadata"
-  end
-
-  create_table "langchain_pg_embedding", primary_key: "uuid", id: :uuid, default: nil, force: :cascade do |t|
-    t.uuid "collection_id"
-    t.vector "embedding", limit: 1536
-    t.string "document"
-    t.json "cmetadata"
-    t.string "custom_id"
-  end
-
   create_table "messages", force: :cascade do |t|
     t.string "content"
     t.boolean "system"
@@ -58,6 +45,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_24_211929) do
     t.datetime "updated_at", null: false
     t.bigint "chat_id"
     t.index ["chat_id"], name: "index_messages_on_chat_id"
+  end
+
+  create_table "product_uploads", force: :cascade do |t|
+    t.bigint "company_id", null: false
+    t.string "job_id"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_product_uploads_on_company_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -91,7 +87,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_24_211929) do
   add_foreign_key "chats", "companies"
   add_foreign_key "invites", "companies"
   add_foreign_key "invites", "users"
-  add_foreign_key "langchain_pg_embedding", "langchain_pg_collection", column: "collection_id", primary_key: "uuid", name: "langchain_pg_embedding_collection_id_fkey", on_delete: :cascade
   add_foreign_key "messages", "chats"
+  add_foreign_key "product_uploads", "companies"
   add_foreign_key "products", "companies"
 end

@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :company do
+    member do
+      get :chat_testing
+    end
     resources :invites
+    resources :data
     resources :chat do
       get :chat
       post :create
@@ -15,5 +19,5 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  root "home#index"
+  root "presentation#index"
 end

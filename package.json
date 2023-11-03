@@ -1,10 +1,11 @@
 {
   "dependencies": {
-    "@hotwired/stimulus": "^3.2.1",
-    "@rails/webpacker": "5.4.3",
-    "stimulus_reflex": "3.5.0-pre8"
+    "@hotwired/stimulus": "^3.2.2",
+    "@hotwired/stimulus-webpack-helpers": "^1.0.1",
+    "esbuild": "^0.19.4"
   },
-  "devDependencies": {
-    "webpack-dev-server": "^3.11.2"
+  "devDependencies": {},
+  "scripts": {
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets"
   }
 }

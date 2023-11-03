@@ -49,6 +49,9 @@ GEM
     activejob (7.0.4.3)
       activesupport (= 7.0.4.3)
       globalid (>= 0.3.6)
+    activejob-status (1.0.0)
+      activejob (>= 6.0)
+      activesupport (>= 6.0)
     activemodel (7.0.4.3)
       activesupport (= 7.0.4.3)
     activerecord (7.0.4.3)
@@ -73,9 +76,6 @@ GEM
     bootsnap (1.16.0)
       msgpack (~> 1.2)
     builder (3.2.4)
-    cable_ready (5.0.0.pre8)
-      rails (>= 5.2)
-      thread-local (>= 1.1.0)
     capybara (3.39.0)
       addressable
       matrix
@@ -152,6 +152,8 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    jsbundling-rails (1.2.1)
+      railties (>= 6.0.0)
     langchainrb (0.3.14)
     loofah (2.20.0)
       crass (~> 1.0.2)
@@ -221,8 +223,7 @@ GEM
       zeitwerk (~> 2.5)
     rake (13.0.6)
     redcarpet (3.6.0)
-    redis (5.0.6)
-      redis-client (>= 0.9.0)
+    redis (4.8.1)
     redis-client (0.14.1)
       connection_pool
     regexp_parser (2.8.0)
@@ -255,16 +256,9 @@ GEM
       sprockets (>= 3.0.0)
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
-    stimulus_reflex (3.5.0.pre8)
-      cable_ready (= 5.0.0.pre8)
-      nokogiri
-      rack
-      rails (>= 5.2)
-      redis
     tailwindcss-rails (2.0.29)
       railties (>= 6.0.0)
     thor (1.2.1)
-    thread-local (1.1.0)
     timeout (0.3.2)
     turbo-rails (1.4.0)
       actionpack (>= 6.0.0)
@@ -299,6 +293,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activejob-status (~> 1.0)
   bootsnap
   capybara
   csv
@@ -308,18 +303,19 @@ DEPENDENCIES
   faker
   importmap-rails
   jbuilder
+  jsbundling-rails
   langchainrb
   neighbor
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.3)
   redcarpet
+  redis (~> 4.0)
   ruby-openai
   selenium-webdriver
   sidekiq (~> 7.1)
   sprockets-rails
   stimulus-rails
-  stimulus_reflex (= 3.5.0.pre8)
   tailwindcss-rails (~> 2.0)
   turbo-rails
   tzinfo-data
@@ -328,7 +324,7 @@ DEPENDENCIES
   webdrivers
 
 RUBY VERSION
-   ruby 2.7.0p0
+   ruby 3.0.0p0
 
 BUNDLED WITH
-   2.1.4
+   2.2.3
